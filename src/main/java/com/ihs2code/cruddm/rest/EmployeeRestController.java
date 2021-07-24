@@ -2,26 +2,30 @@ package com.ihs2code.cruddm.rest;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ihs2code.cruddm.dao.EmployeeDAO;
 import com.ihs2code.cruddm.entity.Employee;
+import com.ihs2code.cruddm.service.EmployeeService;
 
 @RestController
 @RequestMapping("/api")
 public class EmployeeRestController {
 
-	private EmployeeDAO employeeDAO;
+	private EmployeeService employeeService;
 	
 	// inject employee dao by constructor
-	public EmployeeRestController(EmployeeDAO theEmployeeDAO) {
-		employeeDAO = theEmployeeDAO;
+	@Autowired
+	public EmployeeRestController(EmployeeService employeeService) {
+		this.employeeService = employeeService;
 	}
 	
-	// expose "/employees" and return lsit of employees
+	// expose "/employees" and return list of employees
+	@GetMapping("/employees")
 	public List<Employee> findAll() {
-		return employeeDAO.findAll();
+		return employeeService.findAll();
 	}
 	
 }

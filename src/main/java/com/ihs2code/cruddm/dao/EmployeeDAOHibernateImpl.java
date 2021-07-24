@@ -22,7 +22,6 @@ public class EmployeeDAOHibernateImpl implements EmployeeDAO {
 	public EmployeeDAOHibernateImpl(EntityManager theEntityManager) {
 		entityManager = theEntityManager;
 	}
-
 	
 	@Override
 	public List<Employee> findAll() {
